@@ -1,0 +1,12 @@
+
+df = pd.read_csv("Unemployment in India.csv")
+df.columns = df.columns.str.strip()
+df['Date'] = pd.to_datetime(df['Date'])
+print(df.isnull().sum())
+avg_unemployment = df.groupby('Date')['Estimated Unemployment Rate (%)'].mean()
+plt.figure()
+plt.plot(avg_unemployment)
+plt.xlabel("Date")
+plt.ylabel("Unemployment Rate (%)")
+plt.title("Unemployment Rate Trend in India")
+plt.show()
